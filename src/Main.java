@@ -18,7 +18,13 @@ public class Main {
 
         Persona persona = new Persona("Manolo", "ROCOSO", 29);
         ArrayList arrayList = new ArrayList<Persona>();
-        
+
+        serializacion(persona);
+        desSerializacion();
+
+    }
+
+    private static void serializacion(Persona persona) {
         try {
             FileOutputStream fos = new FileOutputStream("personas.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -26,11 +32,12 @@ public class Main {
             oos.writeObject(persona);
             oos.close();
             System.out.println("Objeto Serializado Correctamente");
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-
+    private static void desSerializacion() {
         try {
             FileInputStream fis = new FileInputStream("personas.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -39,7 +46,7 @@ public class Main {
 
             System.out.println("Objeto deserializado correctamente: " + personaLeida);
             ois.close();
-        } catch (IOException | ClassNotFoundException e ) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
